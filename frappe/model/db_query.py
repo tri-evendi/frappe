@@ -923,6 +923,8 @@ class DatabaseQuery:
 					if tbl.startswith("`"):
 						tbl = tbl[4:-1]
 					frappe.throw(_("Please select atleast 1 column from {0} to sort/group").format(tbl))
+			elif "(" in field:
+				frappe.throw(_("Cannot use function in order by"))
 
 	def add_limit(self):
 		if self.limit_page_length:
